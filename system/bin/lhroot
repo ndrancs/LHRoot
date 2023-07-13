@@ -207,9 +207,11 @@ arch () {
             archurl=
             case $ARCH in
                 arm)
-                    archurl="armv7" ;;
+                    archurl="armhf" ;;
                 arm64)
-                    archurl="aarch64" ;;
+                    archurl="arm64" ;;
+                x64)
+                    archurl="amd64" ;;
                 *)
                     abort "unknown arch, maybe your arch is x64?"
             esac
