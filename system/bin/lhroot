@@ -197,7 +197,7 @@ void () {
     echo "You can now launch Void with bootlinux script"
 }
 
-arch_arm () {
+arch () {
     folder=$arch
     checkdir "$folder"
     tarball="$tmp/arch.tar.gz"
@@ -213,7 +213,7 @@ arch_arm () {
                 *)
                     abort "unknown arch, maybe your arch is x64?"
             esac
-                wget "https://sg.mirror.archlinuxarm.org/os/ArchLinuxARM-${archurl}-latest.tar.gz" -qO $tarball & e_spinner
+                wget "https://github.com/termux/proot-distro/releases/download/v3.10.0/archlinux-${archurl}-pd-v3.10.0.tar.xz" -qO $tarball & e_spinner
         fi
         mkdir -p "$folder"
         cd "$folder"
@@ -224,33 +224,6 @@ arch_arm () {
     echo "Removing rootfs tarball for some space"
     rm $tarball
     echo "You can now launch launch Arch Linux with the bootlinux script"
-}
-
-arch_64 () {
-    folder=$arch
-    checkdir "$folder"
-    tarball="$tmp/arch.tar.gz"
-    if [ "$first" != 1 ]; then
-        if [ ! -f $tarball ]; then
-            echo "Downloading Rootfs, please wait..."
-            archurl=
-            case $ARCH in
-                x64)
-                    archurl="x86_64" ;;
-                *)
-                    abort "Unknown arch, maybe your arch is x86 or arm?" ;;
-            esac
-            wget "https://mirrors.edge.kernel.org/archlinux/iso/2023.02.01/archlinux-bootstrap-2023.02.01-${archurl}.tar.gz" -qO $tarball & e_spinner
-        fi
-        mkdir -p "$folder"
-        cd "$folder"
-        echo "Decompressing Rootfs..."
-        tar xf ${tarball} 2> /dev/null||:
-        cd $HOME
-    fi
-    echo "Removing rootfs tarball for some space"
-    rm $tarball
-    echo "You can now launch Arch Linux with the bootlinux script"
 }
 
 manjaro () {
@@ -383,15 +356,14 @@ remove_chroot () {
         title_div "Remove which distro?"
         echo "$div"
         echo "0. Back"
-        echo "1. Arch Linux ARM"
-        echo "2. Arch Linux x64"
-        echo "3. Alpine Linux"
-        echo "4. Debian"
-        echo "5. Fedora"
-        echo "6. Kali Linux"
-        echo "7. Manjaro"
-        echo "8. Ubuntu"
-        echo "9. Void Linux"
+        echo "1. Arch Linux"
+        echo "2. Alpine Linux"
+        echo "3. Debian"
+        echo "4. Fedora"
+        echo "5. Kali Linux"
+        echo "6. Manjaro"
+        echo "7. Ubuntu"
+        echo "8. Void Linux"
         read -r choice?'--> '
         echo " "
         case $choice in
@@ -400,35 +372,31 @@ remove_chroot () {
                 installed=true
                 lmount=$arch
                 ;;
-            2)
-                installed=true
-                lmount=$arch
-                ;;
-            3) 
+            2) 
                 installed=true
                 lmount=$alpine
                 ;;
-            4)
+            3)
                 installed=true
                 lmount=$debian
                 ;;
-            5)
+            4)
                 installed=true
                 lmount=$fedora
                 ;;
-            6)
+            5)
                 installed=true
                 lmount=$kali
                 ;;
-            7)
+            6)
                 installed=true
                 lmount=$manjaro
                 ;;
-            8)
+            7)
                 installed=true
                 lmount=$ubuntu
                 ;;
-            9)
+            8)
                 installed=true
                 lmount=$void
                 ;;
