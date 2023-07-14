@@ -52,6 +52,8 @@ fi
 user=
 if [ -n "$2" ]; then
     user=$2
+else
+    user=root
 fi
 
 extstoragedir=
