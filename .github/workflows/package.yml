@@ -34,7 +34,7 @@ jobs:
            touch module.prop
            echo id=lhroot >> module.prop
            echo name=Linux Chroot Installer >> module.prop
-           echo version=${{ git_hash }} >> module.prop
+           echo version=$git_hash >> module.prop
            echo versionCode=99999 >> module.prop
            echo author=FerryAr, modified by Paddlebus >> module.prop
            echo description=Systemless linux chroot installer and chroot boot script >> module.prop
@@ -42,7 +42,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Package module into zip
         run: |
-          zip -r ./ lhroot-${{ git_hash }}.zip
+          zip -r ./ lhroot-$git_hash.zip
           echo test, and deploy your project.
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
