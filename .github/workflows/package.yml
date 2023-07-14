@@ -40,12 +40,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Package module into zip
         run: |
-          zip -r ./ lhroot-$git_hash.zip
+          zip -r ./ lhroot-master.zip
           echo test, and deploy your project.
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v3
         with:
            name: LHRoot
-           path: lhroot-$(git rev-parse --short HEAD)
+           path: lhroot-master.zip
            retention-days: 14
 
