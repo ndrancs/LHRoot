@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install neofetch and htop
-        run: apt -y install neofetch htop
+        run: sudo apt -y install neofetch htop
 
       # Runs a set of commands using the runners shell
       - name: Run neofetch
