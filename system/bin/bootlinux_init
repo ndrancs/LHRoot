@@ -48,6 +48,17 @@ else
     echo "No chroot installed";
     exit 1
 fi
+
+user=
+if [ -n "$2" ]; then
+    user=$2
+fi
+
+extstoragedir=
+if [ -n "$3" ]; then
+    extstoragedir=$3
+fi
+
 ######### CHECK FOR INSTALL #########
 # There is a bug that will create the resolv.conf
 # If we continue on with bootlinux even after we
