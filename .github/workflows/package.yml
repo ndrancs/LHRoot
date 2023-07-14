@@ -7,9 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
-    paths-ignore: |
-     .git/**
-     .github/**
   pull_request:
     branches: [ "master" ]
 
@@ -32,8 +29,6 @@ jobs:
       - name: generate module.prop and remove other dirs
         run: |
            rm -rfv module.prop
-           rm -rfv .git
-           rm -rfv .github
            touch module.prop
            echo id=lhroot >> module.prop
            echo name=Linux Chroot Installer >> module.prop
