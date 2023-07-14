@@ -56,11 +56,6 @@ else
     user=root
 fi
 
-extstoragedir=
-if [ -n "$3" ]; then
-    extstoragedir=$3
-fi
-
 ######### CHECK FOR INSTALL #########
 # There is a bug that will create the resolv.conf
 # If we continue on with bootlinux even after we
