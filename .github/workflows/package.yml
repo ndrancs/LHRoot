@@ -28,13 +28,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: generate module.prop
         run: |
-           git_hash=$(git rev-parse --short HEAD)
-           git_branch=${GITHUB_REF#refs/heads/}
            rm module.prop
            touch module.prop
            echo id=lhroot >> module.prop
            echo name=Linux Chroot Installer >> module.prop
-           echo version=$git_hash >> module.prop
+           echo version=$(git rev-parse --short HEAD) >> module.prop
            echo versionCode=99999 >> module.prop
            echo author=FerryAr, modified by Paddlebus >> module.prop
            echo description=Systemless linux chroot installer and chroot boot script >> module.prop
@@ -48,6 +46,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
            name: LHRoot
-           path: lhroot-${{ git_hash }}
+           path: lhroot-$(git rev-parse --short HEAD)
            retention-days: 14
 
