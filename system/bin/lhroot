@@ -213,7 +213,7 @@ arch () {
                 x64)
                     archurl="amd64" ;;
                 *)
-                    abort "unknown arch, maybe your arch is x64?"
+                    abort "unknown arch"
             esac
                 wget "https://github.com/termux/proot-distro/releases/download/v3.10.0/archlinux-${archurl}-pd-v3.10.0.tar.xz" -qO $tarball & e_spinner
         fi
@@ -324,8 +324,7 @@ install_chroot () {
         title_div "Install which distro?"
         echo "$div"
         echo "0. Back"
-        echo "1. Arch Linux ARM"
-        echo "2. Arch Linux x64"
+        echo "1. Arch Linux"
         echo "3. Alpine Linux"
         echo "4. Debian"
         echo "5. Fedora"
@@ -337,15 +336,14 @@ install_chroot () {
         echo " "
         case $choice in
             0) break 3;;
-            1) arch_arm ;;
-            2) arch_64 ;;
-            3) alpine ;;
-            4) debian ;;
-            5) fedora ;;
-            6) kali ;;
-            7) manjaro ;;
-            8) ubuntu ;;
-            9) void ;;
+            1) arch ;;
+            2) alpine ;;
+            3) debian ;;
+            4) fedora ;;
+            5) kali ;;
+            6) manjaro ;;
+            7) ubuntu ;;
+            8) void ;;
         esac
     done
 }
@@ -411,11 +409,9 @@ remove_chroot () {
 		echo "After reboot you can rerun this script or remove chroot yourself with 'rm -rf /data/<chroot folder> command'"
 		exit 1;
 	    else
-		echo "Check if any mountpoint is still mounted on chroot folder."
+		echo "Check if any mountpoints are still mounted on the chroot folder."
 		sleep 1;
-		echo "I give you 30 seconds to think twice before removing chroot folder."
-		sleep 1;
-		echo "To ensure that all mountpoint is unmounted, I recommend you to reboot your device."
+		echo "To ensure that all mountpoints are unmounted, a reboot is recommended."
 		sleep 1;
 		echo "After reboot you can rerun this script or remove chroot yourself with 'rm -rf /data/<chroot folder> command'"
 		sleep 30;
@@ -423,7 +419,7 @@ remove_chroot () {
 		echo "Chroot removed"
 	    fi
         else
-            echo "No chroot installed"
+            echo "No chroots installed"
         fi
     done
 }
@@ -431,7 +427,7 @@ remove_chroot () {
 mod_head
 echo " "
 
-test_connection || abort "This module requires internet for running!"
+test_connection || abort "ERROR: lhroot requires internet access."
 
 while true; do
     clear
