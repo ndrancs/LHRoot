@@ -6,13 +6,18 @@ SCRIPT_PATH=$(readlink -f $0)
 . ${SCRIPT_PATH%/*}/bootlinux_init
 
 ######### EXPORT ENVIRONMENT #########
+if [ "$user" = "root" ]; then
+    export HOME=/root
+else
+    export HOME=/home/$user
+fi
+
 export bin=/system/bin
 export mnt=$mnt
 PRESERVED_PATH=$PATH
 export PATH=/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:$bin:$PATH
 export TERM=xterm
-export HOME=/root
-export USER=root
+export USER=$user
 export LOGNAME=root
 export ANDROID_DATA=/data
 export ANDROID_ROOT=/system
