@@ -213,7 +213,7 @@ arch () {
                 x64)
                     archurl="amd64" ;;
                 *)
-                    abort "unknown arch"
+                    abort "unknown arch" ;;
             esac
                 wget "https://github.com/termux/proot-distro/releases/download/v3.10.0/archlinux-${archurl}-pd-v3.10.0.tar.xz" -qO $tarball & e_spinner
         fi
