@@ -198,7 +198,7 @@ void () {
 }
 
 arch () {
-    folder=$arch
+    folder="/data/arch"
     checkdir "$folder"
     tarball="$tmp/arch.tar.gz"
     if [ "$first" != 1 ]; then
@@ -207,15 +207,15 @@ arch () {
             archurl=
             case $ARCH in
                 arm)
-                    archurl="armhf" ;;
+                    archurl="arm" ;;
                 arm64)
-                    archurl="arm64" ;;
+                    archurl="aarch64" ;;
                 x64)
-                    archurl="amd64" ;;
+                    archurl="x86_64" ;;
                 *)
                     abort "unknown arch" ;;
             esac
-                wget "https://github.com/termux/proot-distro/releases/download/v3.10.0/archlinux-${archurl}-pd-v3.10.0.tar.xz" -qO $tarball & e_spinner
+            wget "https://github.com/termux/proot-distro/releases/download/v3.10.0/archlinux-${archurl}-pd-v3.10.0.tar.xz" -qO $tarball & e_spinner
         fi
         mkdir -p "$folder"
         cd "$folder"
