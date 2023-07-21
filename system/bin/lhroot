@@ -220,7 +220,7 @@ archlinux () {
         mkdir -p "$folder"
         cd "$folder"
         echo "Decompressing Rootfs..."
-        tar xf ${tarball} 2> /dev/null||:
+        tar -xvf ${tarball} archlinux-${archurl} 2> /dev/null||:
         cd $HOME
     fi
     echo "Removing rootfs tarball for some space"
@@ -246,7 +246,7 @@ manjaro () {
         mkdir -p "$folder"
         cd "$folder"
         echo "Decompressing Rootfs..."
-        tar xf ${tarball} 2> /dev/null||:
+        tar xf ${tarball} manjaro-${archurl} 2> /dev/null||:
         cd $HOME
     fi
     echo "Removing rootfs tarball for some space"
