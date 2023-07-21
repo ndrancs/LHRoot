@@ -24,7 +24,7 @@ fi
 alpine="/data/alpine"
 debian="/data/debian"
 ubuntu="/data/ubuntu"
-arch="/data/arch"
+archlinux="/data/arch"
 kali="/data/kali"
 fedora="/data/fedora"
 manjaro="/data/manjaro"
@@ -197,7 +197,7 @@ void () {
     echo "You can now launch Void with bootlinux script"
 }
 
-arch () {
+archlinux () {
     folder="/data/arch"
     checkdir "$folder"
     tarball="$tmp/arch.tar.gz"
@@ -237,9 +237,9 @@ manjaro () {
             echo "Downloading Rootfs, please wait..."
             case $ARCH in
                 arm64)
-                    archurl="https://archive.org/download/manjaro-rootfs-arm64.tar/manjaro-rootfs-arm64.tar.xz" ;;
+                    archurl="https://github.com/termux/proot-distro/releases/download/v3.10.0/manjaro-aarch64-pd-v3.10.0.tar.xz" ;;
                 *)
-                    abort "Only Support ARM64" ;;
+                    abort "ERROR: This distro only supports aarch64." ;;
             esac
             wget $archurl -qO $tarball & e_spinner
         fi
@@ -336,7 +336,7 @@ install_chroot () {
         echo " "
         case $choice in
             0) break 3;;
-            1) arch ;;
+            1) archlinux ;;
             2) alpine ;;
             3) debian ;;
             4) fedora ;;
@@ -370,7 +370,7 @@ remove_chroot () {
             0) break 3;;
             1)
                 installed=true
-                lmount=$arch
+                lmount=$archlinux
                 ;;
             2) 
                 installed=true
