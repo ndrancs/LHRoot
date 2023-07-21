@@ -221,7 +221,7 @@ archlinux () {
         cd "$folder"
         echo "Decompressing Rootfs..."
         tar xfJ ${tarball}  2> /dev/null||:
-        mv "$folder/archlinux-${archurl}/*" "$folder"
+        mv $folder/archlinux-${archurl}/* "$folder"
         rm -f "$folder/archlinux-${archurl}"
         cd $HOME
     fi
@@ -249,8 +249,9 @@ manjaro () {
         cd "$folder"
         echo "Decompressing Rootfs..."
         tar xfJ ${tarball} 2> /dev/null||:
-        mv "$folder/manjaro-${archurl}/*" "$folder"
-        rm -f "$folder/manjaro-${archurl}"
+        mv $folder/manjaro-${archurl}/* $folder
+        rm 
+k;lj/-f "$folder/manjaro-${archurl}"
         cd $HOME
     fi
     echo "Removing rootfs tarball for some space"
