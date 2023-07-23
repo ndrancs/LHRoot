@@ -56,6 +56,8 @@ else
     user=root
 fi
 
+cmd=$3
+
 ######### CHECK FOR INSTALL #########
 # There is a bug that will create the resolv.conf
 # If we continue on with bootlinux even after we
@@ -306,6 +308,6 @@ mount_linux_chroot
 if [ -d "$mnt/usr" ]; then
     echo "The Linux chroot should be already running!"
 else
-    echo "Missing required folder, exit now...."
+    echo "ERROR: Missing required folder, exiting now...."
     exit 1
 fi
