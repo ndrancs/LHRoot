@@ -4,8 +4,8 @@
 SCRIPT_PATH=$(readlink -f $0)
 . ${SCRIPT_PATH%/*}/bootlinux_env
 
-if [ -n "$3" ]; then
-   $busybox chroot $mnt /usr/bin/env su - $user
-else
+if [ -n "$cmd" ]; then
    $busybox chroot $mnt /usr/bin/env su $user -c '/bin/bash -c $cmd'
+else
+   $busybox chroot $mnt /usr/bin/env su - $user
 fi
